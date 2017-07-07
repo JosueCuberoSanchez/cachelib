@@ -5,17 +5,17 @@ import javafx.util.Pair;
 /**
  * Created by bjgd9 on 7/7/2017.
  */
-public class LIFOCache implements  Cache<String ,Pair<Integer,String>> {
+public class LIFOCache <K , V> implements  Cache<K , V> {
 
     public String getName() {
         return null;
     }
 
-    public Pair<Integer, String> get(String var1) {
+    public V get(K var1) {
         return null;
     }
 
-    public void put(String var1, Pair<Integer, String> var2) {
+    public void put(K var1, V var2) {
 
     }
 
