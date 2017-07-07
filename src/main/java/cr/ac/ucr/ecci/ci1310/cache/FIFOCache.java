@@ -1,11 +1,30 @@
 package cr.ac.ucr.ecci.ci1310.cache;
 
-import javafx.util.Pair;
+import java.util.Map;
 
 /**
  * Created by bjgd9 on 7/7/2017.
  */
-public class FIFOCache <K  , V> implements Cache<K , V> {
+public class FIFOCache <K , V> implements Cache<K , V> {
+
+    K key;
+    V value;
+    private int size;
+    private String name;
+    private int maxItems;
+    private Double objectLifespan;
+    private Double cacheLifespan;
+    private Map<K,V> map;
+
+    public FIFOCache(int size,String name,int maxItems,Double objectLifespan,Double cacheLifespan){
+        this.size = size;
+        this.name = name;
+        this.maxItems = maxItems;
+        this.objectLifespan = objectLifespan;
+        this.cacheLifespan = cacheLifespan;
+    }
+
+
     public String getName() {
         return null;
     }
