@@ -7,6 +7,8 @@ import java.util.Map;
  */
 public interface  Cache<K, V> {
 
+    
+
     /** Defaults values */
     String cachesName="myCache";
     int cacheSize=10;//default size
