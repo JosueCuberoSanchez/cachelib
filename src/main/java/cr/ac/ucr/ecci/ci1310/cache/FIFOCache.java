@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Created by bjgd9 on 7/7/2017.
  */
-public class FIFOCache <K , V> implements Cache<K , V> {
+public class FIFOCache <K extends Comparable<? super K > , V> implements Cache<K , V> {
 
     K key;
     V value;
