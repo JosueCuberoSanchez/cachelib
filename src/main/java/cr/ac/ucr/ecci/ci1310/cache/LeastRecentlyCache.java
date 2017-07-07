@@ -6,7 +6,6 @@ import javafx.util.Pair;
  * Created by bjgd9 on 7/7/2017.
  */
 public class LeastRecentlyCache <K , V> implements Cache<K , V> {
-
     public String getName() {
         return null;
     }
