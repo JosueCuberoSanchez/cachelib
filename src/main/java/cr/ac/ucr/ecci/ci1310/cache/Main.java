@@ -5,6 +5,12 @@ import cr.ac.ucr.ecci.ci1310.cache.CacheTypes.LIFOCache;
 import cr.ac.ucr.ecci.ci1310.cache.CacheTypes.LeastRecentlyCache;
 import cr.ac.ucr.ecci.ci1310.cache.CacheTypes.RandomCache;
 
+import javax.naming.Context;
+import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
@@ -16,11 +22,50 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
 
-
-
     public static void main(String[] args) throws InterruptedException {
 
-        LeastRecentlyCache<String,Integer> fi= new LeastRecentlyCache<> ();
+        /*
+
+            try {
+                Class.forName ("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection (
+                        "jdbc:mysql://localhost:3306/wiki", "root", "mysql");
+                Statement stmt = con.createStatement ();
+                String likeWord = "man";
+                String query = "select * from wiki.page  where page_title like \"%" + likeWord + "%\"";
+                ResultSet rs = stmt.executeQuery (query);
+
+
+                try (Writer writer = new BufferedWriter (new OutputStreamWriter (
+                        new FileOutputStream ("filename.txt"), "utf-8"))) {
+                    while (rs.next ()) {
+                        String result = rs.getInt (1) + " " + rs.getString (3);
+                        writer.write (result + "\n");
+                    }
+                    con.close ();
+
+                } catch (Exception e) {
+                    e.printStackTrace ();
+                }
+
+
+            } catch (Exception e) {
+                System.out.println (e);
+
+            }
+*/
+
+        BufferedReader br = null;
+        FileReader fr = null;
+
+/*
+        Reader reader = new BufferedReader ("filename.txt",0);
+
+*/
+
+
+
+    FIFOCache<String,Integer> fi= new FIFOCache<> ();
         Thread thread = new Thread (fi);
         thread.start ();
         fi.put ("1",1);
@@ -53,9 +98,13 @@ public class Main {
         long date2= new Date ().getTime ();
         long time = date2-date1;
         System.out.println ("El tiempo fue "+time);
-
-
         thread.join ();
+
+
+            boolean caseSearchId = true;
+            String queryWord = "";
+
+
 
 
 

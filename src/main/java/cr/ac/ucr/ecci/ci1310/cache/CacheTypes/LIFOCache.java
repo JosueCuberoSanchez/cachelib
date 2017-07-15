@@ -1,5 +1,7 @@
 package cr.ac.ucr.ecci.ci1310.cache.CacheTypes;
 
+import cr.ac.ucr.ecci.ci1310.cache.Entry;
+
 import java.util.Map;
 import java.util.Stack;
 
@@ -33,5 +35,12 @@ public class LIFOCache <K extends Comparable<? super K > , V> extends GeneralCac
 
     K selectVictim() {
         return auxiliarCache.pop ();
+    }
+
+    @Override
+    public void evict( K val){
+        Entry entry = this.getCache ().get (val);
+        auxiliarCache.remove (entry);
+        super.evict (val);
     }
 }

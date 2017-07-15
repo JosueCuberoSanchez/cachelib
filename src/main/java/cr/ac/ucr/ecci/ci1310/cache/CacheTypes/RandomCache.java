@@ -1,5 +1,7 @@
 package cr.ac.ucr.ecci.ci1310.cache.CacheTypes;
 
+import cr.ac.ucr.ecci.ci1310.cache.Entry;
+
 import java.util.*;
 
 
@@ -30,6 +32,13 @@ public RandomCache(){
     K selectVictim() {
         int i = (int) (Math.random()*super.getCurrentSize ());
         return auxiliarCache.get (i);
+    }
+
+    @Override
+    public void evict( K val){
+        Entry entry = this.getCache ().get (val);
+        auxiliarCache.remove (entry);
+        super.evict (val);
     }
 
 
