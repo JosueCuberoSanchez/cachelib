@@ -43,4 +43,11 @@ public class LIFOCache <K extends Comparable<? super K > , V> extends GeneralCac
         auxiliarCache.remove (entry);
         super.evict (val);
     }
+
+    @Override
+    public  void  clear(){
+        super.clear ();
+        auxiliarCache.clear ();
+
+    }
 }

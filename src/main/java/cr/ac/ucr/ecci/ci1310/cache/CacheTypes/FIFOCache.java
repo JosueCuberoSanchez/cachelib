@@ -40,4 +40,10 @@ public class FIFOCache <K  , V> extends GeneralCache<K , V> {
         super.evict (val);
     }
 
+    @Override
+    public  void  clear(){
+        super.clear ();
+        auxiliarCache.clear ();
+
+    }
 }

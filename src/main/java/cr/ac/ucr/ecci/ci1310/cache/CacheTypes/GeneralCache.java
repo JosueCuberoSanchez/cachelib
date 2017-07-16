@@ -41,11 +41,7 @@ public abstract class GeneralCache<K,V> implements Cache<K,V> ,Runnable{
                    deleting=false;
                }
             }
-
         }
-
-
-
     }
 
 
@@ -76,8 +72,9 @@ public abstract class GeneralCache<K,V> implements Cache<K,V> ,Runnable{
 
     public synchronized V get(K var1) {
         Entry entry = this.cache.get (var1);
-        V value = (V) entry.getValue ();
+        V value=null;
         if(entry!= null) {
+            value= (V) entry.getValue ();
             checkTimeQueue.remove (entry);
             entry.setDate (new Date ());
             checkTimeQueue.add (entry);
@@ -110,6 +107,7 @@ public abstract class GeneralCache<K,V> implements Cache<K,V> ,Runnable{
 
     public synchronized void clear() {
         this.cache.clear ();
+        currentSize=0;
     }
 
     abstract K selectVictim();
@@ -143,16 +141,6 @@ public abstract class GeneralCache<K,V> implements Cache<K,V> ,Runnable{
     public void setCache(Map<K, Entry<K,V>> cache) {
         this.cache = cache;
     }
-
-
-
-
-
-
-
-
-
-
 
 
 }

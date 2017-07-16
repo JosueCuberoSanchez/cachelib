@@ -41,5 +41,10 @@ public RandomCache(){
         super.evict (val);
     }
 
+    @Override
+    public  void  clear(){
+        super.clear ();
+        auxiliarCache.clear ();
+    }
 
 }
