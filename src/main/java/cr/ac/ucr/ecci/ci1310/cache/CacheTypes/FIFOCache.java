@@ -1,5 +1,7 @@
 package cr.ac.ucr.ecci.ci1310.cache.CacheTypes;
 
+import cr.ac.ucr.ecci.ci1310.cache.Entry;
+
 import java.util.ArrayDeque;
 import java.util.Map;
 import java.util.Queue;
@@ -27,7 +29,15 @@ public class FIFOCache <K  , V> extends GeneralCache<K , V> {
     @Override
     public void put(K var1, V var2) {
         super.put (var1,var2);
-        auxiliarCache.add (var1);
+        Entry entry= super.getCache ().get (var1);
+        auxiliarCache.add ((K) entry);
+    }
+
+    @Override
+    public void evict( K val){
+        Entry entry = this.getCache ().get (val);
+        auxiliarCache.remove (entry);
+        super.evict (val);
     }
 
 }

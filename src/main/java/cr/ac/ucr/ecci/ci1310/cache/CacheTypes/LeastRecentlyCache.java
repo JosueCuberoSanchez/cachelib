@@ -28,8 +28,6 @@ public class LeastRecentlyCache <K extends Comparable<? super K > , V> extends G
         Entry entryValue;
         entryValue = (Entry) super.getCache ().get (var1);//lo obtine
         if(entryValue!=null) {
-
-
             //update time in entry
             auxiliarCache.remove (entryValue);
             Date date = new Date ();
@@ -52,4 +50,10 @@ public class LeastRecentlyCache <K extends Comparable<? super K > , V> extends G
         return auxiliarCache.poll ().getKey ();
     }
 
+    @Override
+    public void evict( K val){
+        Entry entry = this.getCache ().get (val);
+        auxiliarCache.remove (entry);
+        super.evict (val);
+    }
 }

@@ -75,8 +75,14 @@ public abstract class GeneralCache<K,V> implements Cache<K,V> ,Runnable{
     }
 
     public synchronized V get(K var1) {
-        V value = this.cache.get (var1).getValue ();;
-            return value;
+        Entry entry = this.cache.get (var1);
+        V value = (V) entry.getValue ();
+        if(entry!= null) {
+            checkTimeQueue.remove (entry);
+            entry.setDate (new Date ());
+            checkTimeQueue.add (entry);
+        }
+        return value;
     }
 
     public synchronized void put(K var1,V var2) {
@@ -132,9 +138,7 @@ public abstract class GeneralCache<K,V> implements Cache<K,V> ,Runnable{
         this.maxSize = maxSize;
     }
 
-    public Map<K,Entry<K,V> > getCache() {
-        return cache;
-    }
+    public Map<K,Entry<K,V> > getCache() {return cache;}
 
     public void setCache(Map<K, Entry<K,V>> cache) {
         this.cache = cache;
