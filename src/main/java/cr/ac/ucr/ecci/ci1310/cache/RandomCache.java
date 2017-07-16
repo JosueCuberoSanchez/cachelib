@@ -27,7 +27,7 @@ public class RandomCache <K extends Comparable<? super K > , V> implements  Cach
     }
 
     public String getName() {
-        return null;
+        return this.name;
     }
 
     public V get(K var1) {

@@ -26,7 +26,7 @@ public class LeastRecentlyCache <K extends Comparable<? super K > , V> implement
     }
 
     public String getName() {
-        return null;
+        return this.name;
     }
 
     public V get(K var1) {

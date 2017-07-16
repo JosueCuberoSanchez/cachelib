@@ -26,7 +26,7 @@ public class FIFOCache <K extends Comparable<? super K > , V> implements Cache<K
 
 
     public String getName() {
-        return null;
+        return this.name;
     }
 
     public V get(K var1) {
