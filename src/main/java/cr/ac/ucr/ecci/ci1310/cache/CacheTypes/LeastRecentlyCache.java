@@ -56,4 +56,11 @@ public class LeastRecentlyCache <K extends Comparable<? super K > , V> extends G
         auxiliarCache.remove (entry);
         super.evict (val);
     }
+
+    @Override
+    public  void  clear(){
+        super.clear ();
+        auxiliarCache.clear ();
+
+    }
 }
