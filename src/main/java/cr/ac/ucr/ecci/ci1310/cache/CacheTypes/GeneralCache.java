@@ -1,7 +1,7 @@
 package cr.ac.ucr.ecci.ci1310.cache.CacheTypes;
 
 import cr.ac.ucr.ecci.ci1310.cache.Entry;
-import jdk.internal.org.objectweb.asm.tree.analysis.Value;
+
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -13,7 +13,7 @@ public abstract class GeneralCache<K,V> implements Cache<K,V> ,Runnable{
 
     private String name;
     private int currentSize=0;
-    private int maxSize=10;
+    private int maxSize=100;
     private int maxTimeByItem=30;
     private int maxTimeToClear=600;
 

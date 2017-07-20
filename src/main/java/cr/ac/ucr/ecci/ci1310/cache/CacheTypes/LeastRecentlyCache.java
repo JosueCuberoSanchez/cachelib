@@ -1,7 +1,7 @@
 package cr.ac.ucr.ecci.ci1310.cache.CacheTypes;
 
 import cr.ac.ucr.ecci.ci1310.cache.Entry;
-import jdk.internal.org.objectweb.asm.tree.analysis.Value;
+
 
 import java.util.Date;
 import java.util.Map;
@@ -26,16 +26,19 @@ public class LeastRecentlyCache <K extends Comparable<? super K > , V> extends G
     @Override
     public V get(K var1) { //pedir el dato
         Entry entryValue;
+        V value=null;
         entryValue = (Entry) super.getCache ().get (var1);//lo obtine
+
         if(entryValue!=null) {
             //update time in entry
+
             auxiliarCache.remove (entryValue);
             Date date = new Date ();
             entryValue.setDate (date);
             super.getCache ().put (var1, entryValue);
-
+              value=(V)entryValue.getValue ();
         }
-        return (V) entryValue.getValue ();
+        return value;
       }
 
     @Override
@@ -44,7 +47,6 @@ public class LeastRecentlyCache <K extends Comparable<? super K > , V> extends G
         Entry entry =super.getCache ().get (var1);
         auxiliarCache.add (entry);
     }
-
 
     K selectVictim() {
         return auxiliarCache.poll ().getKey ();
